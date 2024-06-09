@@ -1,21 +1,23 @@
-// src/components/Login.js
 import React from 'react';
 
+
 const Login = () => {
+  
   return (
     <div className="flex min-h-screen items-center justify-center bg-gray-100">
       <div className="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-md">
         <h2 className="text-2xl font-bold text-center">Logear</h2>
-        <form className="space-y-6">
+        <form id="loginForm"className="space-y-6">
           <div>
             <label htmlFor="email" className="block text-sm font-medium text-gray-700">
               Email:
             </label>
             <input
-              type="email"
               id="email"
+              name="email"
+              type="email"
               className="w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
-              required
+              
             />
           </div>
           <div>
@@ -23,10 +25,11 @@ const Login = () => {
               Contraseña:
             </label>
             <input
-              type="password"
               id="password"
+              name="password"
+              type="password"
               className="w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
-              required
+             
             />
           </div>
           <div>
@@ -40,8 +43,8 @@ const Login = () => {
         </form>
         <div className="text-center">
           <p className="text-sm text-gray-600">
-            Aun no tienes una cuenta?{' '}
-            <a href="http://localhost:3000/users/auth/login" className="text-blue-600 hover:underline">
+            ¿Aún no tienes una cuenta?{' '}
+            <a href="http://localhost:3000/auth/users/register" className="text-blue-600 hover:underline">
               Registrar
             </a>
           </p>

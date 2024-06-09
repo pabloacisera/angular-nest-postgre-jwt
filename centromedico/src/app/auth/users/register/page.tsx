@@ -1,21 +1,42 @@
-import React from "react";
+'use client'
+import React, { useState } from "react";
+import { useUser } from "../../../../context/user.context"; 
 
 export default function Register() {
+  const { createUser } = useUser(); // Obtener la función createUser del contexto
+  const [formData, setFormData] = useState({
+    area: "",
+    name: "",
+    email: "",
+    password: ""
+  });
 
-  const onSubmit = (user: string) => {
-    console.log(user)
-  }
+  const handleChange = (e:any) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = async (e:any) => {
+    e.preventDefault();
+    try {
+      await createUser({ name: formData.name, email: formData.email, password: formData.password, area:formData.area });
+      console.log(createUser)
+      alert('Usuario creado exitosamente');
+    } catch (error) {
+      console.error('Error al crear el usuario:', error);
+    }
+  };
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-gray-100">
       <div className="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-md">
         <h2 className="text-2xl font-bold text-center">Register</h2>
-        <form className="space-y-6">
-        <div className="py-2">
-            <select name="area" id="area">
+        <form className="space-y-6" onSubmit={handleSubmit}>
+          <div className="py-2">
+            <select name="area" id="area" value={formData.area} onChange={handleChange}>
               <option value="">SELECCIONAR</option>
-              <option value="osde">O.S.D.E</option>
-              <option value="osecac">O.S.E.C.A.C</option>
+              <option value="clinica">CLINICA</option>
+              <option value="analisis">ANALISIS</option>
             </select>
           </div>
           <div className="py-2">
@@ -28,6 +49,9 @@ export default function Register() {
             <input
               type="text"
               id="name"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
               className="w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
               required
             />
@@ -42,6 +66,9 @@ export default function Register() {
             <input
               type="email"
               id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
               className="w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
               required
             />
@@ -56,6 +83,9 @@ export default function Register() {
             <input
               type="password"
               id="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
               className="w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
               required
             />

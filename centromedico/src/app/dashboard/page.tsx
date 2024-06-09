@@ -1,6 +1,10 @@
+'use client'
+
 import React from 'react'
+import { useUser } from '../../context/user.context'
 
 export default function Dashboard() {
+
   return(
     <div>
       <p>
