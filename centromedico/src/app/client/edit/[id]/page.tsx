@@ -1,11 +1,7 @@
-import React from 'react'
+import React from "react";
 
-function EditClient( { params } ) {
-  return (
-    <div>
-      Aqui se edita por id: {params.id}
-    </div>
-  )
+function EditClient({ params }) {
+  return <div>Aqui se edita por id: {params.id}</div>;
 }
 
 export default EditClient;

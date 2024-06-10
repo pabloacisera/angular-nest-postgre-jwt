@@ -1,6 +1,6 @@
-'use client'
+"use client";
 import React, { useState } from "react";
-import { useUser } from "../../../../context/user.context"; 
+import { useUser } from "../../../../context/user.context";
 
 export default function Register() {
   const { createUser } = useUser(); // Obtener la función createUser del contexto
@@ -8,22 +8,27 @@ export default function Register() {
     area: "",
     name: "",
     email: "",
-    password: ""
+    password: "",
   });
 
-  const handleChange = (e:any) => {
+  const handleChange = (e: any) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = async (e:any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     try {
-      await createUser({ name: formData.name, email: formData.email, password: formData.password, area:formData.area });
-      console.log(createUser)
-      alert('Usuario creado exitosamente');
+      await createUser({
+        name: formData.name,
+        email: formData.email,
+        password: formData.password,
+        area: formData.area,
+      });
+      console.log(createUser);
+      alert("Usuario creado exitosamente");
     } catch (error) {
-      console.error('Error al crear el usuario:', error);
+      console.error("Error al crear el usuario:", error);
     }
   };
 
@@ -33,7 +38,12 @@ export default function Register() {
         <h2 className="text-2xl font-bold text-center">Register</h2>
         <form className="space-y-6" onSubmit={handleSubmit}>
           <div className="py-2">
-            <select name="area" id="area" value={formData.area} onChange={handleChange}>
+            <select
+              name="area"
+              id="area"
+              value={formData.area}
+              onChange={handleChange}
+            >
               <option value="">SELECCIONAR</option>
               <option value="clinica">CLINICA</option>
               <option value="analisis">ANALISIS</option>

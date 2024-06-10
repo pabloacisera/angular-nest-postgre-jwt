@@ -1,11 +1,7 @@
-import React from 'react'
+import React from "react";
 
 function CreateClient() {
-  return (
-    <div>
-      formulario para crear clientes
-    </div>
-  )
+  return <div>formulario para crear clientes</div>;
 }
 
-export default CreateClient
+export default CreateClient;

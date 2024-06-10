@@ -1,1 +1,1 @@
-export default function Auth(){}
+export default function Auth() {}
