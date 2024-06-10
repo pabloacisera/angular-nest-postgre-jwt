@@ -35,8 +35,8 @@ const UserProvider = ({ children }: { children: ReactNode }) => {
   }) => {
     try {
       console.log("Datos recibidos en createUser:", user);
-      const response = user;
-      //const response = await axios.post('/api/create-user', user);
+      const response = await axios.post('http://localhost:4000/api/users/create', user);
+      console.log(response)
       setUserData((prevData) => [...prevData, response]);
     } catch (error) {
       console.error("Error creating user:", error);

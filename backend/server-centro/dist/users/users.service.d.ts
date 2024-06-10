@@ -1,8 +1,10 @@
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { PrismaService } from '../prisma/prisma.service';
 export declare class UsersService {
-    create(createUserDto: CreateUserDto): string;
-    findAll(): string;
+    private readonly prisma;
+    constructor(prisma: PrismaService);
+    create_user(createUserDto: CreateUserDto): void;
     findOne(id: number): string;
     update(id: number, updateUserDto: UpdateUserDto): string;
     remove(id: number): string;
