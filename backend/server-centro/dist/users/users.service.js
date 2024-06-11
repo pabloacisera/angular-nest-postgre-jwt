@@ -17,25 +17,40 @@ let UsersService = class UsersService {
     constructor(prisma) {
         this.prisma = prisma;
     }
-    async create_user(createUserDto) {
-        const { area, name, email, password } = createUserDto;
+    async create_user(data) {
+        const { area, name, email, password } = data;
         const passHash = await bcrypt.hash(password, 10);
-        const newUser = {
-            area,
-            name,
-            email,
-            password: passHash,
-        };
-        console.log(newUser);
+        const newUser = this.prisma.user.create({
+            data: {
+                area,
+                name,
+                password: passHash,
+                email,
+            },
+        });
+        return newUser;
     }
     findOne(id) {
         return `This action returns a #${id} user`;
     }
     update(id, updateUserDto) {
-        return `This action updates a #${id} user`;
+        return `This action updates a #${id} user and ${updateUserDto}`;
     }
     remove(id) {
         return `This action removes a #${id} user`;
+    }
+    async login_user(loginUserDto) {
+        const { email, password } = loginUserDto;
+        const userFind = await this.prisma.user.findUnique({ where: { email } });
+        if (!userFind) {
+            throw new common_1.NotFoundException('User not found');
+        }
+        const comparePassword = await bcrypt.compare(password, loginUserDto.password);
+        if (!comparePassword) {
+            throw new common_1.NotFoundException('The password not exist');
+        }
+        const dataUser = userFind;
+        return dataUser;
     }
 };
 exports.UsersService = UsersService;
