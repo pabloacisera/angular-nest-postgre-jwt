@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular-centro": {
+    "centro-medico": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/angular-centro",
+            "outputPath": "dist/centro-medico",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -27,8 +27,7 @@
               }
             ],
             "styles": [
-              "src/styles.css",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+              "src/styles.css"
             ],
             "scripts": [],
             "server": "src/main.server.ts",
@@ -65,10 +64,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "angular-centro:build:production"
+              "buildTarget": "centro-medico:build:production"
             },
             "development": {
-              "buildTarget": "angular-centro:build:development"
+              "buildTarget": "centro-medico:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -100,6 +99,6 @@
     }
   },
   "cli": {
-    "analytics": "9b297a4f-12ec-41ea-b419-4846e1a7396f"
+    "analytics": false
   }
 }
